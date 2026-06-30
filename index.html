@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04050a">
+<title>Zarana Solanki — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04050a;
+  --panel:#0a0c14;
+  --panel2:#0e111c;
+  --line:#1a1f2e;
+  --text:#e9ebf2;
+  --muted:#8189a0;
+  --blue:#6e7bf2;
+  --teal:#2dd4bf;
+  --purple:#a855f7;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:
+  linear-gradient(rgba(110,123,242,0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(110,123,242,0.04) 1px, transparent 1px);
+  background-size:46px 46px;background-color:#04050a;}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  overflow-x:hidden;position:relative;
+}
+::selection{background:var(--teal);color:#04050a;}
+a{color:inherit;text-decoration:none;}
+
+body::before{
+  content:"";position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(110,123,242,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110,123,242,0.18) 1px, transparent 1px);
+  background-size:46px 46px;
+  pointer-events:none;z-index:0;
+  -webkit-mask-image:radial-gradient(420px 420px at var(--mx,50%) var(--my,15%), #000 0%, transparent 75%);
+  mask-image:radial-gradient(420px 420px at var(--mx,50%) var(--my,15%), #000 0%, transparent 75%);
+  transition:mask-position .1s linear;
+}
+body::after{
+  content:"";position:fixed;inset:-50%;pointer-events:none;z-index:0;
+  width:200%;height:200%;
+  background:radial-gradient(500px 350px at center, rgba(94,234,212,.10), transparent 70%);
+  animation:driftGlow 16s ease-in-out infinite;
+}
+@keyframes driftGlow{
+  0%{transform:translate(10%,5%);}
+  25%{transform:translate(55%,15%);}
+  50%{transform:translate(40%,45%);}
+  75%{transform:translate(5%,35%);}
+  100%{transform:translate(10%,5%);}
+}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+.hero{padding:100px 0 70px;text-align:center;position:relative;z-index:1;}
+.statusline{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  border:1px solid var(--line);padding:7px 16px;border-radius:30px;
+  margin-bottom:36px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+.hero h1{
+  font-size:clamp(36px,6.4vw,64px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:8px;
+}
+.hero h1 .line1{
+  background:linear-gradient(90deg,#c8cbe0,#9aa0bd);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero h1 .line2{
+  display:block;
+  background:linear-gradient(90deg,var(--blue) 0%, var(--teal) 55%, var(--purple) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.role-line{font-family:var(--mono);font-size:16px;color:var(--teal);margin:22px 0 26px;}
+.role-line span.pre{color:var(--muted);}
+.hero p.lead{color:var(--muted);font-size:16.5px;max-width:600px;margin:0 auto 36px;line-height:1.75;}
+
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
+.btn{
+  font-family:var(--sans);font-weight:600;font-size:14px;padding:13px 26px;border-radius:10px;
+  border:1px solid var(--line);transition:.25s ease;display:inline-flex;align-items:center;gap:8px;
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--blue),#5865d6);
+  color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(110,123,242,.35);
+}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(110,123,242,.5);}
+.btn.ghost{background:var(--panel);color:var(--text);}
+.btn.ghost:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+
+.scroll-hint{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:50px;}
+
+section{padding:90px 0;border-bottom:0px solid var(--line);position:relative;z-index:1;}
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:1.5px;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.eyebrow .eline{width:18px;height:1px;background:var(--line);display:inline-block;}
+h2{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.6px;margin-bottom:18px;max-width:600px;color:#e9ebf2;}
+.section-desc{color:var(--muted);font-size:14.5px;max-width:600px;margin-bottom:46px;line-height:1.7;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.show{opacity:1;transform:translateY(0);}
+
+.timeline{position:relative;padding-left:30px;}
+.timeline::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--blue),var(--teal),var(--purple));border-radius:2px;}
+.tl-item{position:relative;padding-bottom:42px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:"";position:absolute;left:-35px;top:5px;width:10px;height:10px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--teal);transition:.25s;
+}
+.tl-item:hover::before{box-shadow:0 0 14px var(--teal);transform:scale(1.3);}
+.tl-item:hover{padding-left:6px;}
+.tl-year{font-family:var(--mono);font-size:12px;color:var(--purple);margin-bottom:5px;}
+.tl-role{font-size:18px;font-weight:700;margin-bottom:3px;}
+.tl-company{font-size:13px;color:var(--muted);margin-bottom:12px;}
+.tl-desc{color:var(--muted);font-size:14px;max-width:640px;margin-bottom:13px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{font-family:var(--mono);font-size:11px;border:1px solid var(--line);padding:4px 10px;border-radius:5px;color:var(--muted);transition:.2s;}
+.tag:hover{border-color:var(--teal);color:var(--teal);}
+
+.galaxy-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;}
+.galaxy-canvas{
+  border:1px solid var(--line);background:var(--panel);border-radius:14px;
+  padding:18px;position:relative;min-height:380px;overflow:hidden;
+}
+.galaxy-label{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:1px;margin-bottom:10px;}
+.galaxy-canvas svg{width:100%;height:330px;display:block;}
+.orbit-group{transform-origin:210px 165px;animation:orbitSpin 40s linear infinite;}
+.orbit-group .gnode{animation:counterSpin 40s linear infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes orbitSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes counterSpin{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+.gnode{cursor:default;transition:.25s;}
+.gnode circle{transition:.25s;}
+.gnode:hover circle{filter:drop-shadow(0 0 10px currentColor);transform-origin:center;}
+.gnode text{fill:#cfd3e2;font-family:var(--mono);font-size:9px;}
+
+.galaxy-side{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:24px;display:flex;flex-direction:column;justify-content:center;min-height:380px;}
+.galaxy-side .eyebrow{margin-bottom:14px;}
+.galaxy-side p{color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:22px;}
+.galaxy-detail{min-height:64px;margin-bottom:18px;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);display:none;}
+.galaxy-detail.show{display:block;}
+.galaxy-detail-title{font-family:var(--mono);font-size:13px;color:var(--teal);font-weight:700;margin-bottom:6px;}
+.galaxy-detail-desc{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.legend{display:flex;flex-wrap:wrap;gap:14px;}
+.legend-item{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;color:var(--muted);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.project-card{
+  border:1px solid var(--line);background:var(--panel);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;transition:.3s ease;
+}
+.project-card:hover{border-color:var(--teal);transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.4);}
+.project-thumb{
+  height:150px;position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:radial-gradient(circle at 30% 20%, rgba(45,212,191,.18), transparent 55%),
+             radial-gradient(circle at 80% 80%, rgba(168,85,247,.14), transparent 50%), var(--panel2);
+}
+.project-thumb svg{width:100%;height:100%;display:block;}
+.project-body{padding:22px;flex:1;display:flex;flex-direction:column;}
+.project-status{font-family:var(--mono);font-size:10px;color:var(--purple);letter-spacing:.6px;margin-bottom:8px;}
+.project-title{font-size:18px;font-weight:700;margin-bottom:9px;}
+.project-desc{color:var(--muted);font-size:13.5px;margin-bottom:16px;flex:1;line-height:1.65;}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;}
+
+.terminal{border:1px solid var(--line);background:#000;border-radius:12px;overflow:hidden;}
+.term-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--panel2);border-bottom:1px solid var(--line);}
+.term-dot{width:10px;height:10px;border-radius:50%;}
+.term-bar span:nth-child(1){background:#ff5f56;}
+.term-bar span:nth-child(2){background:#ffbd2e;}
+.term-bar span:nth-child(3){background:#27c93f;}
+.term-path{margin-left:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted);}
+.term-body{padding:20px;font-family:var(--mono);font-size:13px;line-height:1.85;min-height:90px;}
+.term-body .prompt{color:var(--teal);font-weight:700;}
+.term-body .muted{color:var(--muted);}
+.term-body .out{color:var(--text);}
+.term-body .cmdrow{margin-bottom:4px;}
+.term-body .indent{padding-left:18px;color:var(--muted);}
+.term-body #termInput{
+  background:transparent;border:none;outline:none;color:var(--text);
+  font-family:var(--mono);font-size:13px;width:200px;caret-color:var(--teal);
+}
+.term-body .caret{display:none;color:var(--teal);}
+
+.contact{border-bottom:none;padding-bottom:170px;}
+.contact-card{
+  position:relative;overflow:hidden;text-align:center;
+  border:1px solid var(--line);border-radius:20px;padding:70px 30px;
+  background:var(--panel);
+}
+.contact-card::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(110,123,242,.16), transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(45,212,191,.14), transparent 50%);
+  pointer-events:none;
+}
+.contact-card::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:34px 34px;pointer-events:none;
+}
+.contact-inner{position:relative;z-index:1;}
+.contact-card .eyebrow{justify-content:center;}
+.contact-card h2{margin:0 auto 16px;max-width:none;}
+.contact-card p{color:var(--muted);margin-bottom:34px;font-size:14.5px;}
+.social-row{display:flex;justify-content:center;gap:30px;margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+.social-row a:hover{color:var(--teal);}
+
+footer{padding:30px 0 150px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:12px;position:relative;z-index:1;}
+footer .fwrap{display:flex;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 28px;flex-wrap:wrap;gap:18px;align-items:center;}
+.footer-nav{display:flex;gap:22px;}
+.footer-nav a{transition:.2s;}
+.footer-nav a:hover{color:var(--teal);}
+
+.dock{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
+  display:flex;align-items:center;gap:8px;
+  background:rgba(10,12,20,.8);backdrop-filter:blur(16px);
+  border:1px solid var(--line);border-radius:20px;padding:10px;z-index:100;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+.dock a{
+  width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);transition:.2s ease;font-size:17px;position:relative;
+}
+.dock a:hover{color:var(--bg);background:var(--teal);transform:translateY(-6px);}
+.dock a.active{color:var(--bg);background:var(--blue);}
+.dock a .tip{
+  position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:10.5px;background:var(--panel2);border:1px solid var(--line);
+  padding:4px 9px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;color:var(--text);
+}
+.dock a:hover .tip{opacity:1;}
+
+@media(max-width:760px){
+  .galaxy-grid{grid-template-columns:1fr;}
+  .project-grid{grid-template-columns:1fr;}
+  .dock{gap:4px;padding:8px;}
+  .dock a{width:36px;height:36px;font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <!-- <div class="statusline"><span class="dot"></span> Open to full-time & contract roles</div> -->
+    <h1>
+      <span class="line1">Hi, I'm Zarana.</span>
+      <span class="line2">I turn data into decisions.</span>
+    </h1>
+    <div class="role-line"><span class="pre">&gt;</span> Senior Data Analyst</div>
+    <p class="lead">Results-driven Data Analyst with 5+ years of experience across Banking, Healthcare, SaaS, and Enterprise domains — building dashboards, pipelines, and data models that drive measurable business value.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">✦ View Projects</a>
+      <a class="btn ghost" href="#terminal">Ask the AI about me</a>
+      <a class="btn ghost" href="https://drive.google.com/uc?export=download&id=1UqtcEdm-oHGsZX-JWkeH8YfNh0qJyURd">⬇ Download Resume</a>
+    </div>
+    <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <div class="eyebrow">01<span class="eline"></span>CAREER TIMELINE</div>
+    <h2 class="reveal">Five years of building data trust across industries.</h2>
+    <div class="section-desc reveal">From requirements gathering to executive dashboards — a journey across Banking, Insurance, and Healthcare data.</div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-year">Jan 2024 — Present</div>
+        <div class="tl-role">Data Analyst</div>
+        <div class="tl-company">ABC, Canada</div>
+        <div class="tl-desc">Analyzed financial, transactional, claims, risk, and portfolio data to support underwriting and investment decisions. Built ETL/ELT pipelines with Azure Data Factory, Databricks, dbt, and Airflow. Delivered executive dashboards in Power BI, Tableau, and Looker for KPI tracking and risk analytics.</div>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">Snowflake</span><span class="tag">Azure</span><span class="tag">Power BI</span><span class="tag">Python</span></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">May 2018 — Dec 2023</div>
+        <div class="tl-role">Data Analyst</div>
+        <div class="tl-company">GVT Software Solutions, Ahmedabad, India</div>
+        <div class="tl-desc">Delivered business and technology solutions across Banking, Insurance, Healthcare, and Enterprise domains. Led requirements gathering, BRD/FRD/user stories, executive dashboards, and KPI reporting while driving Agile delivery and stakeholder alignment.</div>
+        <div class="tags"><span class="tag">Excel</span><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Agile/Scrum</span><span class="tag">JIRA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">02<span class="eline"></span>SKILLS GALAXY</div>
+    <h2 class="reveal">A living constellation of capabilities.</h2>
+    <div class="section-desc reveal">Every node is a tool I reach for in production — from querying to dashboarding to pipeline orchestration.</div>
+    <div class="galaxy-grid reveal">
+      <div class="galaxy-canvas">
+        <div class="galaxy-label">GALAXY.EXE · DATA STACK</div>
+        <svg viewBox="0 0 420 330">
+          <g class="orbit-group">
+          <g stroke="#1a1f2e" stroke-width="1">
+            <line x1="80" y1="60" x2="150" y2="100"/>
+            <line x1="150" y1="100" x2="230" y2="70"/>
+            <line x1="230" y1="70" x2="300" y2="110"/>
+            <line x1="150" y1="100" x2="120" y2="170"/>
+            <line x1="120" y1="170" x2="200" y2="190"/>
+            <line x1="200" y1="190" x2="280" y2="170"/>
+            <line x1="280" y1="170" x2="300" y2="110"/>
+            <line x1="120" y1="170" x2="90" y2="250"/>
+            <line x1="200" y1="190" x2="210" y2="260"/>
+            <line x1="280" y1="170" x2="330" y2="230"/>
+            <line x1="90" y1="250" x2="170" y2="280"/>
+            <line x1="210" y1="260" x2="170" y2="280"/>
+            <line x1="210" y1="260" x2="290" y2="290"/>
+          </g>
+          <g class="gnode" data-skill="SQL" data-desc="Advanced T-SQL & PL/SQL querying used daily for financial, claims, and risk data analysis." style="color:#2dd4bf"><circle cx="80" cy="60" r="20" fill="#2dd4bf" fill-opacity=".25" stroke="#2dd4bf"/><text x="80" y="64" text-anchor="middle">SQL</text></g>
+          <g class="gnode" data-skill="Python" data-desc="Pandas & NumPy for data profiling, cleansing, validation, and root-cause analysis." style="color:#2dd4bf"><circle cx="150" cy="100" r="26" fill="#2dd4bf" fill-opacity=".3" stroke="#2dd4bf"/><text x="150" y="104" text-anchor="middle">Python</text></g>
+          <g class="gnode" data-skill="Power BI" data-desc="DAX & Power Query for executive KPI dashboards, revenue, and risk reporting." style="color:#6e7bf2"><circle cx="230" cy="70" r="18" fill="#6e7bf2" fill-opacity=".25" stroke="#6e7bf2"/><text x="230" y="74" text-anchor="middle">Power BI</text></g>
+          <g class="gnode" data-skill="Tableau" data-desc="Interactive dashboards for financial and operational performance monitoring." style="color:#6e7bf2"><circle cx="300" cy="110" r="22" fill="#6e7bf2" fill-opacity=".3" stroke="#6e7bf2"/><text x="300" y="114" text-anchor="middle">Tableau</text></g>
+          <g class="gnode" data-skill="Snowflake" data-desc="Cloud data warehouse for portfolio, transactional, and claims data analysis." style="color:#a855f7"><circle cx="120" cy="170" r="22" fill="#a855f7" fill-opacity=".3" stroke="#a855f7"/><text x="120" y="174" text-anchor="middle">Snowflake</text></g>
+          <g class="gnode" data-skill="Azure ADF" data-desc="Orchestrating ETL/ELT pipelines for reliable data integration and warehouse loading." style="color:#a855f7"><circle cx="200" cy="190" r="20" fill="#a855f7" fill-opacity=".25" stroke="#a855f7"/><text x="200" y="194" text-anchor="middle">Azure ADF</text></g>
+          <g class="gnode" data-skill="Databricks" data-desc="Large-scale data transformation and pipeline processing." style="color:#fbbf24"><circle cx="280" cy="170" r="18" fill="#fbbf24" fill-opacity=".25" stroke="#fbbf24"/><text x="280" y="174" text-anchor="middle">Databricks</text></g>
+          <g class="gnode" data-skill="dbt" data-desc="Data modeling with Star Schema and Data Vault methodologies." style="color:#fbbf24"><circle cx="90" cy="250" r="16" fill="#fbbf24" fill-opacity=".25" stroke="#fbbf24"/><text x="90" y="254" text-anchor="middle">dbt</text></g>
+          <g class="gnode" data-skill="Airflow" data-desc="Scheduling and automating recurring data workflows and reports." style="color:#2dd4bf"><circle cx="210" cy="260" r="18" fill="#2dd4bf" fill-opacity=".25" stroke="#2dd4bf"/><text x="210" y="264" text-anchor="middle">Airflow</text></g>
+          <g class="gnode" data-skill="Looker" data-desc="Self-serve reporting and KPI tracking for cross-functional teams." style="color:#6e7bf2"><circle cx="330" cy="230" r="16" fill="#6e7bf2" fill-opacity=".25" stroke="#6e7bf2"/><text x="330" y="234" text-anchor="middle">Looker</text></g>
+          <g class="gnode" data-skill="DAX" data-desc="Calculated measures and KPIs powering executive Power BI reports." style="color:#a855f7"><circle cx="170" cy="280" r="14" fill="#a855f7" fill-opacity=".25" stroke="#a855f7"/><text x="170" y="284" text-anchor="middle">DAX</text></g>
+          <g class="gnode" data-skill="Fabric" data-desc="Microsoft Fabric initiatives supporting data governance and lineage." style="color:#fbbf24"><circle cx="290" cy="290" r="14" fill="#fbbf24" fill-opacity=".25" stroke="#fbbf24"/><text x="290" y="294" text-anchor="middle">Fabric</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="galaxy-side">
+        <div class="eyebrow" style="margin-bottom:14px;">SELECT A NODE</div>
+        <p id="galaxyHint">Hover any node to see where it shows up across financial reporting, ETL pipelines, and dashboard missions.</p>
+        <div id="galaxyDetail" class="galaxy-detail">
+          <div id="galaxyTitle" class="galaxy-detail-title"></div>
+          <div id="galaxyDesc" class="galaxy-detail-desc"></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#2dd4bf"></span>Querying</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#6e7bf2"></span>BI / Visualization</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#a855f7"></span>Warehousing</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#fbbf24"></span>Pipelines / Infra</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">03<span class="eline"></span>PROJECT COMMAND CENTER</div>
+    <h2 class="reveal">Missions, not screenshots.</h2>
+    <div class="section-desc reveal">Each card is a real engagement — the data problem, the stack used, and the business outcome it drove. No mockups, just shipped analysis.</div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><polyline points="10,130 50,90 90,110 130,60 170,80 210,40 250,55 290,20" fill="none" stroke="#2dd4bf" stroke-width="2" opacity=".85"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 01 · BANKING</div>
+          <div class="project-title">Financial Risk & Portfolio Analytics</div>
+          <div class="project-desc">Built SQL and Snowflake-based pipelines covering claims, risk, and portfolio data to support underwriting and investment decisions for finance and risk teams.</div>
+          <div class="project-tags"><span class="tag">SQL</span><span class="tag">Snowflake</span><span class="tag">Azure SQL</span></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><rect x="30" y="90" width="24" height="50" fill="#a855f7" opacity=".8"/><rect x="80" y="60" width="24" height="80" fill="#2dd4bf" opacity=".8"/><rect x="130" y="100" width="24" height="40" fill="#a855f7" opacity=".6"/><rect x="180" y="40" width="24" height="100" fill="#2dd4bf" opacity=".9"/><rect x="230" y="70" width="24" height="70" fill="#6e7bf2" opacity=".7"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 02 · DATA ENGINEERING</div>
+          <div class="project-title">ETL/ELT Pipeline Modernization</div>
+          <div class="project-desc">Designed and automated ETL/ELT pipelines using Azure Data Factory, Databricks, dbt, and Airflow — ensuring reliable data integration, transformation, and warehouse loading.</div>
+          <div class="project-tags"><span class="tag">Azure Data Factory</span><span class="tag">dbt</span><span class="tag">Airflow</span></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><circle cx="150" cy="80" r="55" fill="none" stroke="#6e7bf2" stroke-width="14" stroke-dasharray="260" stroke-dashoffset="70" opacity=".85"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 03 · BI & REPORTING</div>
+          <div class="project-title">Executive KPI Dashboard Suite</div>
+          <div class="project-desc">Developed interactive dashboards and executive reports in Power BI (DAX, Power Query), Tableau, and Looker for financial reporting, revenue, and risk analytics.</div>
+          <div class="project-tags"><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Looker</span></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><path d="M20,140 Q150,-20 280,140" fill="none" stroke="#fbbf24" stroke-width="2" opacity=".8"/><circle cx="150" cy="40" r="5" fill="#2dd4bf"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 04 · DATA QUALITY</div>
+          <div class="project-title">Data Profiling & Reconciliation Engine</div>
+          <div class="project-desc">Performed data profiling, cleansing, validation, and root cause analysis using Python (Pandas, NumPy) and Snowflake — maintaining high data quality and regulatory compliance.</div>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><line x1="30" y1="20" x2="30" y2="140" stroke="#1a1f2e" stroke-width="2"/><line x1="30" y1="140" x2="280" y2="140" stroke="#1a1f2e" stroke-width="2"/><polyline points="30,110 80,90 130,100 180,60 230,75 280,30" fill="none" stroke="#2dd4bf" stroke-width="2"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 05 · PROCESS AUTOMATION</div>
+          <div class="project-title">Workflow & Reporting Automation</div>
+          <div class="project-desc">Automated reports and business workflows using Power Automate, REST APIs, Python, and scheduling tools — significantly reducing manual reporting effort across teams.</div>
+          <div class="project-tags"><span class="tag">Power Automate</span><span class="tag">REST APIs</span><span class="tag">Python</span></div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><svg viewBox="0 0 300 160"><rect x="40" y="30" width="220" height="100" rx="8" fill="none" stroke="#a855f7" stroke-width="1.5" opacity=".6"/><line x1="40" y1="60" x2="260" y2="60" stroke="#1a1f2e"/><line x1="120" y1="30" x2="120" y2="130" stroke="#1a1f2e"/><line x1="190" y1="30" x2="190" y2="130" stroke="#1a1f2e"/></svg></div>
+        <div class="project-body">
+          <div class="project-status">MISSION 06 · BUSINESS ANALYSIS</div>
+          <div class="project-title">Requirements & Stakeholder Delivery</div>
+          <div class="project-desc">Led requirements gathering, BRD/FRD/user stories, gap analysis, and UAT across Banking, Insurance, and Healthcare domains — translating business needs into scalable solutions.</div>
+          <div class="project-tags"><span class="tag">BRD/FRD</span><span class="tag">Agile/Scrum</span><span class="tag">JIRA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="terminal">
+  <div class="wrap">
+    <div class="eyebrow">04<span class="eline"></span>DEVELOPER TERMINAL</div>
+    <h2 class="reveal">For the people who'd rather type.</h2>
+    <div class="section-desc reveal">A real command interface. Try help, skills, experience, or projects — it actually runs.</div>
+    <div class="terminal reveal">
+      <div class="term-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-path">ZARANA@OS: ~/ZARANASOLANKI.GITHUB.IO</span>
+      </div>
+      <div class="term-body" id="termBody">
+        <div class="out">ZARANA.OS shell — type "help" to begin.</div>
+        <div class="cmdrow" id="termLine"><span class="prompt">zarana@os</span> <span class="muted">$</span> <input id="termInput" autocomplete="off" spellcheck="false" /><span class="caret">▍</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="contact-inner">
+        <div class="eyebrow">// OPEN A CONNECTION</div>
+        <h2>Let's build something worth reporting on.</h2>
+        <p>Open to full-time and contract data analyst roles. The fastest way to reach me is email — I reply to everything thoughtful.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:zaranasolanki17@gmail.com">✉ Email me</a>
+          <a class="btn ghost" href="tel:+13659964757"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +1 365-996-4757</a>
+          <a class="btn ghost" href="#">↗ LinkedIn</a>
+        </div>
+        <div class="social-row">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="mailto:zaranasolanki17@gmail.com">Email</a>
+          <a href="tel:+13659964757">Phone</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fwrap">
+    <span>© 2026 Zarana Solanki. ZARANA.OS</span>
+    <nav class="footer-nav">
+      <a href="#timeline">Timeline</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#terminal">Terminal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="dock">
+  <a href="#top" id="dockHome" data-tip="Home"><span class="tip">Home</span>⌂</a>
+  <a href="#timeline" data-tip="Timeline"><span class="tip">Timeline</span>⏱</a>
+  <a href="#skills" data-tip="Skills"><span class="tip">Skills</span>◈</a>
+  <a href="#projects" data-tip="Projects"><span class="tip">Projects</span>▣</a>
+  <a href="#terminal" data-tip="Terminal"><span class="tip">Terminal</span>▤</a>
+  <a href="#contact" class="active" data-tip="Contact"><span class="tip">Contact</span>✉</a>
+</div>
+
+<script>
+  document.addEventListener('mousemove', (e)=>{
+    document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--my', e.clientY + 'px');
+  });
+
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+  },{threshold:0.12});
+  items.forEach(i=>io.observe(i));
+
+  const sections = ['top','timeline','skills','projects','terminal','contact'];
+  const dockLinks = document.querySelectorAll('.dock a');
+  window.addEventListener('scroll', ()=>{
+    let current = sections[0];
+    sections.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el && window.scrollY + window.innerHeight/2 >= el.offsetTop) current = id;
+    });
+    dockLinks.forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+    });
+  });
+
+  document.getElementById('dockHome').addEventListener('click', (e)=>{
+    e.preventDefault();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* ---- skills galaxy hover ---- */
+  const gHint = document.getElementById('galaxyHint');
+  const gDetail = document.getElementById('galaxyDetail');
+  const gTitle = document.getElementById('galaxyTitle');
+  const gDesc = document.getElementById('galaxyDesc');
+  document.querySelectorAll('.gnode').forEach(node=>{
+    node.addEventListener('mouseenter', ()=>{
+      gHint.style.display='none';
+      gDetail.classList.add('show');
+      gTitle.textContent = node.dataset.skill;
+      gDesc.textContent = node.dataset.desc;
+    });
+    node.addEventListener('mouseleave', ()=>{
+      gDetail.classList.remove('show');
+      gHint.style.display='block';
+    });
+  });
+
+  /* ---- interactive terminal ---- */
+  const termBody = document.getElementById('termBody');
+  const termInput = document.getElementById('termInput');
+  const termLine = document.getElementById('termLine');
+
+  const commands = {
+    help: `Available commands:
+  about         who is Zarana
+  skills        list the data stack
+  experience    career timeline
+  projects      list missions
+  resume        summary + download
+  contact       how to reach me
+  social        links
+  clear         clear the screen
+  help          show this help`,
+    about: `Zarana Solanki — Senior Data Analyst, 5+ years of experience\nacross Banking, Healthcare, SaaS, and Enterprise domains.\nBased in Hamilton, Canada.`,
+    skills: `SQL · Python · Power BI · Tableau · Snowflake\nAzure Data Factory · Databricks · dbt · Airflow · Looker`,
+    experience: `Jan 2024 — Present   Data Analyst @ ABC, Canada\nMay 2018 — Dec 2023  Data Analyst @ GVT Software Solutions, India`,
+    projects: `01 Financial Risk & Portfolio Analytics\n02 ETL/ELT Pipeline Modernization\n03 Executive KPI Dashboard Suite\n04 Data Profiling & Reconciliation Engine\n05 Workflow & Reporting Automation\n06 Requirements & Stakeholder Delivery`,
+    resume: `5+ years experience · Banking, Healthcare, SaaS, Enterprise\nDownload: mailto:zaranasolanki17@gmail.com`,
+    contact: `Email: zaranasolanki17@gmail.com\nPhone: +1 365-996-4757\nLocation: Hamilton, Canada`,
+    social: `GitHub · LinkedIn · Email · Phone`
+  };
+
+  function printLine(text, cls){
+    const div = document.createElement('div');
+    div.className = cls || 'indent';
+    div.style.whiteSpace = 'pre-wrap';
+    div.textContent = text;
+    termBody.insertBefore(div, termLine);
+  }
+
+  termInput && termInput.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const val = termInput.value.trim();
+      const echo = document.createElement('div');
+      echo.className = 'cmdrow';
+      echo.innerHTML = '<span class="prompt">zarana@os</span> <span class="muted">$</span> ' + (val || '');
+      termBody.insertBefore(echo, termLine);
+
+      const cmd = val.toLowerCase();
+      if(cmd === 'clear'){
+        document.querySelectorAll('.term-body .indent, .term-body .cmdrow, .term-body .out').forEach(el=>{
+          if(el.id !== 'termLine') el.remove();
+        });
+      } else if(commands[cmd]){
+        printLine(commands[cmd]);
+      } else if(cmd === ''){
+        // do nothing
+      } else {
+        printLine(`command not found: ${val} — type "help" for options`);
+      }
+      termInput.value = '';
+      termBody.scrollTop = termBody.scrollHeight;
+    }
+  });
+  termBody && termBody.addEventListener('click', ()=> termInput && termInput.focus());
+
+  /* ---- footer nav smooth scroll (native anchor already smooth via html scroll-behavior) ---- */
+</script>
+
+</body>
+</html>
